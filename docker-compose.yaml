@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    image: docker-demo:1.0.0               # Define the image name <Optional>
+    container_name: dcoker-demo-test      # Define the container name <Optional>
+    build: 
+      context: .                             # Use current directory as build context
+      dockerfile: Dockerfile                 # Specify the Dockerfile (optional if named `Dockerfile`)
+    environment:
+      - USER_NAME=user from compose file     # Pass environment variables
+    volumes:
+      - .:/app
+      - /home/saurabh/logs:/app/logs         
+    ports:
+      - "5001:5000"                           # Map port 5000 on the host to port 5000 in the container
+    command: ["python", "app.py"]
